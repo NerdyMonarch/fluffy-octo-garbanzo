@@ -3,42 +3,71 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Window extends Canvas {
-    
-    // FIELDS
+public class Window {
 
-    // Required when extending to Canvas, This Serializes the Class
-    private static final long serialVersionUID = -8255319694373975038L;
-
+    // Holds Window Object
     private JFrame frame;
 
-    // CONSTRUCTOR
+    // Dimensions
+    private Dimension dimension;
+    private int width;
+    private int height;
 
-    public Window(int width, int height, String title, Game game) {
+    // Holds Drawing Object
+    private Canvas canvas;
+
+    public Window(String title, int width, int height) {
+
         // Window Screen
         this.frame = new JFrame(title);
 
+        // Dimensions
+        this.dimension = new Dimension(width, height);
+        this.width = width;
+        this.height = height;
+
+        // Allows Us to Draw
+        this.canvas = new Canvas();
+
+        startDisplay();
+    }
+
+    private void startDisplay() {
+
         // Setting Dimensions of Window Screen
-        frame.setPreferredSize(new Dimension(width, height));
-        frame.setMinimumSize(new Dimension(width, height));
-        frame.setMaximumSize(new Dimension(width, height));
+        frame.setPreferredSize(dimension);
+        frame.setMinimumSize(dimension);
+        frame.setMaximumSize(dimension);
 
         // Stops Game Operation after Game is Closed
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Doesn't Allow Us to Resize our Window
-        frame.setResizable(false);
-
-        // Starts at the Middle of the Screen instead of Top Left
+        // Starts Window in the Middle
         frame.setLocationRelativeTo(null);
 
-        // Adds Game Class into the Frame
-        frame.add(game);
+        // Doesn't Allow Us to Resize our Window
+        frame.setResizable(false);
 
         // Starts Showing the Frame
         frame.setVisible(true);
 
-        // Runs Start Method for Game
-        game.start();
+        // Adds Canvas into Frame
+        addCanvas();
+    }
+
+    private void addCanvas() {
+
+        // Setting Dimensions of Canvas
+        canvas.setPreferredSize(dimension);
+        canvas.setMinimumSize(dimension);
+        canvas.setMaximumSize(dimension);
+
+        frame.add(canvas);
+        frame.pack();
+    }
+
+    // Accessor for Canvas
+    public Canvas getCanvas() {
+        return canvas;
     }
 }

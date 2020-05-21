@@ -3,31 +3,36 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable {
-
-    // MAIN METHOD
-
-    public static void main(String[] args) {
-        // Runs Game Class
-        new Game();
-    }
-
-    // FIELDS 
-
-    // Required when extending to Canvas, This Serializes the Class
-    private static final long serialVersionUID = -7803629994015778818L;
+public class Game implements Runnable {
+    // Holds Title of Game
+    private String title;
+    // Holds The Game Window
+    private Window window;
+    // Dimensions of Window
+    private int width;
+    private int height;
 
     // Holds Thread that Game is Running On
     private Thread thread;
-
     // Boolean to See if Game is Running
     private boolean running;
 
-    // CONSTRUCTOR
+    // Buffers for Rendering
+    private BufferStrategy buffer;
+    // Graphics Object for Rendering
+    private Graphics graphics;
 
-    public Game() {
-        // Runs the Windows Constructor
-        new Window(Config.WIDTH, Config.HEIGHT, "Wessica + Wikhil", this);
+    public Game(String title) {
+        // Stores Parameters as Fields
+        this.title = title;
+        this.width = Config.WIDTH;
+        this.height = Config.HEIGHT;
+        
+        // Game Hasn't Started Running Yet
+        this.running = false;
+
+        // Starts Window
+        this.window = new Window(title, width, height);
     }
 
     // Starts Game
@@ -98,27 +103,27 @@ public class Game extends Canvas implements Runnable {
 
     // Handles Rendering Graphics
     private void render() {
-        BufferStrategy buffer = this.getBufferStrategy();
+        Canvas canvas = window.getCanvas();
+        BufferStrategy buffer = canvas.getBufferStrategy();
         // Buffer Starts off as null
         if(buffer == null) {
             // Creates new Buffer
-            this.createBufferStrategy(Config.NUMBER_OF_BUFFERS);
+            canvas.createBufferStrategy(Config.NUMBER_OF_BUFFERS);
             return;
         }
 
         // Obtains Graphics from Buffer
-        Graphics graphics = buffer.getDrawGraphics();
+        graphics = buffer.getDrawGraphics();
 
         // Sets Color to Graphics
-        graphics.setColor(Color.BLACK);
+        graphics.setColor(Color.BLUE);
         // Fills Background with Color
-        graphics.fillRect(0, 0, Config.WIDTH, Config.HEIGHT);
-
-        // Clears the Graphics
-        graphics.dispose();
+        graphics.fillRect(0, 0, width, height);
 
         // Shows the Buffer That Holds the Render
         buffer.show();
+        // Clears the Graphics
+        graphics.dispose();
     }
 
     // Stops Game
