@@ -1,4 +1,7 @@
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 
@@ -88,12 +91,34 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    
     private void tick() {
 
     }
 
+    // Handles Rendering Graphics
     private void render() {
+        BufferStrategy buffer = this.getBufferStrategy();
+        // Buffer Starts off as null
+        if(buffer == null) {
+            // Creates new Buffer
+            this.createBufferStrategy(Config.NUMBER_OF_BUFFERS);
+            return;
+        }
 
+        // Obtains Graphics from Buffer
+        Graphics graphics = buffer.getDrawGraphics();
+
+        // Sets Color to Graphics
+        graphics.setColor(Color.BLACK);
+        // Fills Background with Color
+        graphics.fillRect(0, 0, Config.WIDTH, Config.HEIGHT);
+
+        // Clears the Graphics
+        graphics.dispose();
+
+        // Shows the Buffer That Holds the Render
+        buffer.show();
     }
 
     // Stops Game
