@@ -116,9 +116,12 @@ public class Game implements Runnable {
         graphics = buffer.getDrawGraphics();
 
         // Sets Color to Graphics
-        graphics.setColor(Color.BLUE);
+        graphics.setColor(Color.GREEN);
         // Fills Background with Color
         graphics.fillRect(0, 0, width, height);
+
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(1,3, width, height);
 
         // Shows the Buffer That Holds the Render
         buffer.show();
