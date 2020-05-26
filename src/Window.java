@@ -22,9 +22,9 @@ public class Window {
         this.frame = new JFrame(title);
 
         // Dimensions
-        this.dimension = new Dimension(width, height);
         this.width = width;
         this.height = height;
+        this.dimension = new Dimension(this.width, this.height);
 
         // Allows Us to Draw
         this.canvas = new Canvas();
@@ -62,6 +62,9 @@ public class Window {
         canvas.setMinimumSize(dimension);
         canvas.setMaximumSize(dimension);
 
+        // Lets the Frame have Focus over Graphics
+        canvas.setFocusable(false);
+
         frame.add(canvas);
         frame.pack();
     }
@@ -69,5 +72,10 @@ public class Window {
     // Accessor for Canvas
     public Canvas getCanvas() {
         return canvas;
+    }
+
+    // Accessor for JFrame
+    public JFrame getFrame() {
+        return frame;
     }
 }

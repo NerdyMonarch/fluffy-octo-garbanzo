@@ -1,7 +1,7 @@
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import javax.swing.JFrame;
 
 public class Game implements Runnable {
     // Holds Title of Game
@@ -22,6 +22,9 @@ public class Game implements Runnable {
     // Graphics Object for Rendering
     private Graphics graphics;
 
+    // Handler for GameObjects
+    private Handler handler;
+
     public Game(String title) {
         // Stores Parameters as Fields
         this.title = title;
@@ -32,7 +35,14 @@ public class Game implements Runnable {
         this.running = false;
 
         // Starts Window
-        this.window = new Window(title, width, height);
+        this.window = new Window(this.title, this.width, this.height);
+
+        // Listens to Keyboard
+        JFrame frame = window.getFrame();
+        frame.addKeyListener(new KeyInput());
+
+        // Creates a Handler Object
+        this.handler = new Handler();
     }
 
     // Starts Game
@@ -98,13 +108,14 @@ public class Game implements Runnable {
 
     
     private void tick() {
-
+        // Calls all Tick Methods using Handler
+        handler.tick();
     }
 
     // Handles Rendering Graphics
     private void render() {
         Canvas canvas = window.getCanvas();
-        BufferStrategy buffer = canvas.getBufferStrategy();
+        buffer = canvas.getBufferStrategy();
         // Buffer Starts off as null
         if(buffer == null) {
             // Creates new Buffer
@@ -115,13 +126,11 @@ public class Game implements Runnable {
         // Obtains Graphics from Buffer
         graphics = buffer.getDrawGraphics();
 
-        // Sets Color to Graphics
-        graphics.setColor(Color.GREEN);
-        // Fills Background with Color
-        graphics.fillRect(0, 0, width, height);
+        // Clear Screen
+        graphics.clearRect(0, 0, width, height);
 
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(1,3, width, height);
+        // Calls all Render Methods using the Handler
+        handler.render(graphics);
 
         // Shows the Buffer That Holds the Render
         buffer.show();
