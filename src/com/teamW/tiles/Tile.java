@@ -1,3 +1,5 @@
+package com.teamW.tiles;
+
 import java.awt.image.BufferedImage;
 
 public abstract class Tile {

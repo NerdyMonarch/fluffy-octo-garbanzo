@@ -1,5 +1,9 @@
+package com.teamW;
+
 import java.util.LinkedList;
 import java.awt.Graphics;
+
+import com.teamW.objects.GameObject;
 
 public class Handler {
     // List of GameObjects to Update

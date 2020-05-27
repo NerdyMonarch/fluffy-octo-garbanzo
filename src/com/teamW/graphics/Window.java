@@ -1,3 +1,5 @@
+package com.teamW.graphics;
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 

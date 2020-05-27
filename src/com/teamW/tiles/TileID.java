@@ -1,3 +1,5 @@
+package com.teamW.tiles;
+
 public enum TileID {
     // List of IDs
     FLOOR0(0), FLOOR1(1), FLOOR2(2), FLOOR3(3), 

@@ -1,7 +1,12 @@
+package com.teamW;
+
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
+
+import com.teamW.inputs.KeyInput;
+import com.teamW.graphics.Window;
 
 public class Game implements Runnable {
     // Holds Title of Game
