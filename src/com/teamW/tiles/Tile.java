@@ -8,6 +8,14 @@ public abstract class Tile {
     public Tile(BufferedImage[] images, TileType TileType) {
         this.images = images;
         this.TileType = TileType;
-
     }
+    
+    public com.teamW.tiles.TileType TileType() {
+        return this.TileType;
+    }
+        
+
+    public BufferedImage[] getImages() {
+        return images;
+    } 
 }
