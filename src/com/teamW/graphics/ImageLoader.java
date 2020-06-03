@@ -18,4 +18,8 @@ public class ImageLoader {
         // Never Reached
         return null;
     }
+
+	public static Object LoadImage(String string) {
+		return null;
+	}
 }
