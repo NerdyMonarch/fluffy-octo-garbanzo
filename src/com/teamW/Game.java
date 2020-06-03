@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
+import com.teamW.objects.Creatures.Player;
+import com.teamW.tiles.Assets;
 import com.teamW.graphics.Window;
 
 public class Game implements Runnable {
@@ -33,6 +35,9 @@ public class Game implements Runnable {
     // Handler for GameObjects
     private Handler handler;
 
+    // TEMPORARY
+    Player player;
+
     public Game(String title) {
         // Stores Parameters as Fields
         this.title = title;
@@ -45,6 +50,8 @@ public class Game implements Runnable {
         // Starts Window
         this.window = new Window(this.title, this.width, this.height);
 
+        Assets.init();
+
         // Listens to Keyboard
         JFrame frame = window.getFrame();
         this.keyInput = new KeyInput();
@@ -52,6 +59,9 @@ public class Game implements Runnable {
 
         // Creates a Handler Object
         this.handler = new Handler();
+
+        // TEMPORARY
+        this.player = new Player(this, 0, 0);
     }
 
     // Starts Game
@@ -125,6 +135,7 @@ public class Game implements Runnable {
     
     private void tick() {
         keyInput.tick();
+        player.tick();
         // Calls all Tick Methods using Handler
         handler.tick();
     }
@@ -146,6 +157,7 @@ public class Game implements Runnable {
         // Clear Screen
         graphics.clearRect(0, 0, width, height);
 
+        player.render(graphics);
         // Calls all Render Methods using the Handler
         handler.render(graphics);
 

@@ -3,6 +3,7 @@ package com.teamW.objects.Creatures;
 import java.awt.Graphics;
 
 import com.teamW.Game;
+import com.teamW.tiles.Assets;
 
 public class Player extends Creature {
     private Game game;
@@ -13,10 +14,10 @@ public class Player extends Creature {
 
     public void tick() {
         if(game.getKeyInput().up) {
-            y += 3;
+            y -= 3;
         }
         if(game.getKeyInput().down) {
-            y -= 3;
+            y += 3;
         }
         if(game.getKeyInput().left) {
             x -= 3;
@@ -27,6 +28,6 @@ public class Player extends Creature {
     }
 
     public void render(Graphics g) {
-
+        g.drawImage(Assets.player1, x, y, null);
     }
 }
