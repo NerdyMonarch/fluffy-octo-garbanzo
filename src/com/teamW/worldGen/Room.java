@@ -29,10 +29,10 @@ public class Room {
 
     }
 
-    public Tile getTile(int num) {
+    /* public Tile getTile(int num) {
         // PlaceHolder
         return new Tile();
-    }
+    } */
 
     public void loadRoom(String path) {
         for(int x = 0; x < width; x++) {
