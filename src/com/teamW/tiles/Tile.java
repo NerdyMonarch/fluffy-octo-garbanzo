@@ -8,6 +8,5 @@ public abstract class Tile {
     public Tile(BufferedImage[] images, TileType TileType) {
         this.images = images;
         this.TileType = TileType;
-
     }
 }
