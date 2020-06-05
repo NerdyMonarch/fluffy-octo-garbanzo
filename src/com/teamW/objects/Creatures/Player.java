@@ -3,7 +3,7 @@ package com.teamW.objects.Creatures;
 import java.awt.Graphics;
 
 import com.teamW.Game;
-import com.teamW.tiles.Assets;
+import com.teamW.graphics.Assets;
 
 public class Player extends Creature {
     private Game game;
@@ -28,6 +28,6 @@ public class Player extends Creature {
     }
 
     public void render(Graphics g) {
-        g.drawImage(Assets.player1, x, y, null);
+        g.drawImage(Assets.getPlayer(0), x, y, null);
     }
 }

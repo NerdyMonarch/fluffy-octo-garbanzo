@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
 import com.teamW.objects.Creatures.Player;
-import com.teamW.tiles.Assets;
+import com.teamW.graphics.Assets;
 import com.teamW.graphics.Window;
 
 public class Game implements Runnable {
@@ -49,8 +49,6 @@ public class Game implements Runnable {
 
         // Starts Window
         this.window = new Window(this.title, this.width, this.height);
-
-        Assets.init();
 
         // Listens to Keyboard
         JFrame frame = window.getFrame();

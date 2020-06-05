@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.Scanner;
 
 import com.teamW.Config;
-import com.teamW.tiles.Tile;
 
 public class Room {
     
