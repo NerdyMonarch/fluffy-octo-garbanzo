@@ -13,21 +13,25 @@ public class Player extends Creature {
     }
 
     public void tick() {
+        move();
+    }
+
+    public void move() {
         if(game.getKeyInput().up) {
-            y -= 3;
+            y -= speed;
         }
         if(game.getKeyInput().down) {
-            y += 3;
+            y += speed;
         }
         if(game.getKeyInput().left) {
-            x -= 3;
+            x -= speed;
         }
         if(game.getKeyInput().right) {
-            x += 3;
+            x += speed;
         }
     }
 
     public void render(Graphics g) {
-        g.drawImage(Assets.getPlayer(0), x, y, null);
+        g.drawImage(Assets.getPlayer(0), (int) x, (int) y, null);
     }
 }

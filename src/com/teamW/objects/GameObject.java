@@ -2,19 +2,36 @@ package com.teamW.objects;
 
 import java.awt.Graphics;
 
+import com.teamW.Config;
+
 public abstract class GameObject {
     // Coordinates
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
+
+    // Dimension of Object
+    protected int width;
+    protected int height;
 
     public GameObject() {
         this.x = 0;
         this.y = 0;
+        this.width = Config.DEFAULT_OBJECT_WIDTH;
+        this.height = Config.DEFAULT_OBJECT_HEIGHT;
     }
 
-    public GameObject(int x, int y) {
+    public GameObject(int width, int height) {
+        this.x = 0;
+        this.y = 0;
+        this.width = width;
+        this.height = height;
+    }
+
+    public GameObject(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     // Method to Update Game State
@@ -23,19 +40,19 @@ public abstract class GameObject {
     // Method to Render Game Object
     public abstract void render(Graphics g);
 
-    public int getX() {
+    public double getX() {
         return this.x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return this.y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 }

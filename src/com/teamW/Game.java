@@ -6,8 +6,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
-import com.teamW.objects.Creatures.Player;
-import com.teamW.graphics.Assets;
+import com.teamW.states.GameState;
+import com.teamW.states.State;
 import com.teamW.graphics.Window;
 
 public class Game implements Runnable {
@@ -35,8 +35,8 @@ public class Game implements Runnable {
     // Handler for GameObjects
     private Handler handler;
 
-    // TEMPORARY
-    Player player;
+    // States
+    private State gameState;
 
     public Game(String title) {
         // Stores Parameters as Fields
@@ -58,8 +58,8 @@ public class Game implements Runnable {
         // Creates a Handler Object
         this.handler = new Handler();
 
-        // TEMPORARY
-        this.player = new Player(this, 0, 0);
+        gameState = new GameState();
+        State.setState(gameState);
     }
 
     // Starts Game
@@ -133,7 +133,12 @@ public class Game implements Runnable {
     
     private void tick() {
         keyInput.tick();
-        player.tick();
+
+        // Ticks State
+        if(State.getState() != null) {
+            State.getState().tick();
+        }
+
         // Calls all Tick Methods using Handler
         handler.tick();
     }
@@ -155,9 +160,10 @@ public class Game implements Runnable {
         // Clear Screen
         graphics.clearRect(0, 0, width, height);
 
-        player.render(graphics);
-        // Calls all Render Methods using the Handler
-        handler.render(graphics);
+        // Renders State
+        if(State.getState() != null) {
+            State.getState().render(graphics);
+        }
 
         // Shows the Buffer That Holds the Render
         buffer.show();
