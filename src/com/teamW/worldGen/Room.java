@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.Scanner;
 
 import com.teamW.Config;
+import com.teamW.tiles.TileHandler;
 
 public class Room {
     
@@ -14,12 +15,15 @@ public class Room {
     public Room(String path) {
         this.input = new Scanner(path);
         this.tiles = new int[Config.ROOM_WIDTH][Config.ROOM_HEIGHT];
+        this.width = Config.ROOM_WIDTH;
+        this.height = Config.ROOM_HEIGHT;
         loadRoom(path);
     }
 
     public void render(Graphics g) {
-        for(int  y= 0; y < height; y++) {
+        for(int  y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
+                TileHandler.getTile(tiles[x][y]).render(g, x * Config.TILE_WIDTH * Config.TILE_SCALE, y * Config.TILE_HEIGHT * Config.TILE_SCALE);
             }
         }
     }
@@ -28,15 +32,15 @@ public class Room {
 
     }
 
-    /* public Tile getTile(int num) {
-        // PlaceHolder
-        return new Tile();
-    } */
-
     public void loadRoom(String path) {
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
-                tiles[x][y] = input.nextInt();
+                if(input.hasNextInt()) {
+                    tiles[x][y] = input.nextInt();
+                }
+                else {
+                    System.out.println("ERROR IN READING WORLD TXT");
+                }
             }
         }
     }

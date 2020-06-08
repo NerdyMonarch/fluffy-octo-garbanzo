@@ -35,6 +35,9 @@ public class Game implements Runnable {
     // Handler for GameObjects
     private Handler handler;
 
+    // Holds JFrame
+    private JFrame frame;
+
     // States
     private State gameState;
 
@@ -51,14 +54,14 @@ public class Game implements Runnable {
         this.window = new Window(this.title, this.width, this.height);
 
         // Listens to Keyboard
-        JFrame frame = window.getFrame();
+        this.frame = window.getFrame();
         this.keyInput = new KeyInput();
         frame.addKeyListener(keyInput);
 
         // Creates a Handler Object
         this.handler = new Handler();
 
-        gameState = new GameState();
+        gameState = new GameState(this);
         State.setState(gameState);
     }
 

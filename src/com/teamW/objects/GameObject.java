@@ -20,13 +20,6 @@ public abstract class GameObject {
         this.height = Config.DEFAULT_OBJECT_HEIGHT;
     }
 
-    public GameObject(int width, int height) {
-        this.x = 0;
-        this.y = 0;
-        this.width = width;
-        this.height = height;
-    }
-
     public GameObject(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;

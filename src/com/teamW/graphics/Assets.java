@@ -14,22 +14,78 @@ public class Assets {
         ImageLoader.loadImage("/textures/tiles/floors/floor_7.png")
     };
     
-    private static BufferedImage[] walls;
+    private static BufferedImage[] wallCorners = {
+        ImageLoader.loadImage("/textures/tiles/walls/wall_left_corner.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_right_corner.png")
+    };
+
+    private static BufferedImage[] wallBottoms = {
+        ImageLoader.loadImage("/textures/tiles/walls/wall_bottom_0.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_bottom_1.png")
+    };
+
+    private static BufferedImage[] wallSides = {
+        ImageLoader.loadImage("/textures/tiles/walls/wall_left_0.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_left_1.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_right_0.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_right_1.png")
+    };
+
+    private static BufferedImage[] wallTops = {
+        ImageLoader.loadImage("/textures/tiles/walls/wall_top_0.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_top_1.png"),
+        ImageLoader.loadImage("/textures/tiles/walls/wall_top_2.png")
+    };
 
     private static BufferedImage[] players = {
         ImageLoader.loadImage("/textures/creatures/player_1.png")
     };
 
+    public static BufferedImage[] getFloorArray() {
+        return floors;
+    }
+
     public static BufferedImage getFloor(int num) {
         return floors[num];
     }
 
-    public static BufferedImage getWall(int num) {
-        return walls[num];
+    public static BufferedImage[] getWallCornerArray() {
+        return wallCorners;
+    }
+
+    public static BufferedImage getWallCorner(int num) {
+        return wallCorners[num];
+    }
+
+    public static BufferedImage[] getWallBottomArray() {
+        return wallBottoms;
+    }
+
+    public static BufferedImage getWallBottom(int num) {
+        return wallBottoms[num];
+    }
+
+    public static BufferedImage[] getWallSideArray() {
+        return wallSides;
+    }
+
+    public static BufferedImage getWallSide(int num) {
+        return wallSides[num];
+    }
+
+    public static BufferedImage[] getWallTopArray() {
+        return wallTops;
+    }
+
+    public static BufferedImage getWallTop(int num) {
+        return wallTops[num];
+    }
+
+    public static BufferedImage[] getPlayerArray() {
+        return players;
     }
 
     public static BufferedImage getPlayer(int num) {
         return players[num];
     }
-
 }

@@ -2,36 +2,42 @@ package com.teamW.objects.Creatures;
 
 import java.awt.Graphics;
 
+import com.teamW.Config;
 import com.teamW.Game;
 import com.teamW.graphics.Assets;
 
 public class Player extends Creature {
     private Game game;
+
     public Player(Game game, int x, int y) {
-        super(x, y);
+        super(x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
         this.game = game;
     }
 
     public void tick() {
+        getInput();
         move();
     }
 
-    public void move() {
+    public void getInput() {
+        xMove = 0;
+        yMove = 0;
+
         if(game.getKeyInput().up) {
-            y -= speed;
+            yMove = -speed;
         }
         if(game.getKeyInput().down) {
-            y += speed;
+            yMove = speed;
         }
         if(game.getKeyInput().left) {
-            x -= speed;
+            xMove = -speed;
         }
         if(game.getKeyInput().right) {
-            x += speed;
+            xMove = speed;
         }
     }
 
     public void render(Graphics g) {
-        g.drawImage(Assets.getPlayer(0), (int) x, (int) y, null);
+        g.drawImage(Assets.getPlayer(0), (int) x, (int) y, width, height, null);
     }
 }
