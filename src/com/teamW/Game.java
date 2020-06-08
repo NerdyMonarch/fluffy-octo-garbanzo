@@ -3,6 +3,8 @@ package com.teamW;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.FileNotFoundException;
+
 import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
@@ -41,7 +43,7 @@ public class Game implements Runnable {
     // States
     private State gameState;
 
-    public Game(String title) {
+    public Game(String title) throws FileNotFoundException {
         // Stores Parameters as Fields
         this.title = title;
         this.width = Config.WIDTH;
@@ -163,6 +165,10 @@ public class Game implements Runnable {
         // Clear Screen
         graphics.clearRect(0, 0, width, height);
 
+        graphics.setColor(Config.background);
+
+        graphics.fillRect(0, 0, width, height);
+        
         // Renders State
         if(State.getState() != null) {
             State.getState().render(graphics);

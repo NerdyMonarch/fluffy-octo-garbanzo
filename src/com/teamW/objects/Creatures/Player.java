@@ -1,6 +1,7 @@
 package com.teamW.objects.Creatures;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
 import com.teamW.Config;
 import com.teamW.Game;

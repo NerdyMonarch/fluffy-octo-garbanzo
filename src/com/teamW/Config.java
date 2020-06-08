@@ -1,8 +1,10 @@
 package com.teamW;
 
+import java.awt.Color;
+
 public final class Config {
     // Holds Dimensions of the Game Window
-    public static final int WIDTH = 1280;
+    public static final int WIDTH = 720;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final int NUMBER_OF_BUFFERS = 3;
     
@@ -22,4 +24,7 @@ public final class Config {
     // Creature Defaults
     public static final double DEFAULT_SPEED = 1;
     public static final int DEFAULT_HEALTH = 10;
+
+    // Background
+    public static final Color background = new Color(37, 19, 26);
 }

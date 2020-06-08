@@ -22,10 +22,7 @@ public class TileHandler {
     public static Tile getTile(int num) {
         int i = num / 10;
         int j = num % 10;
-        if(num < tiles.length) {
-            tiles[i].setIndex(j);
-            return tiles[i];
-        }
-        return floorTile;
+        tiles[i].setIndex(j);
+        return tiles[i];
     }
 }
