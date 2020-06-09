@@ -1,10 +1,10 @@
 package com.teamW.states;
 
 import java.awt.Graphics;
+import java.io.FileNotFoundException;
 
 import com.teamW.Handler;
 import com.teamW.objects.Creatures.Player;
-import com.teamW.tiles.TileHandler;
 import com.teamW.worldGen.Room;
 
 public class GameState extends State {
@@ -12,12 +12,11 @@ public class GameState extends State {
     private Player player;
     private Room room;
     
-    public GameState(Handler handler) {
+    public GameState(Handler handler) throws FileNotFoundException {
         super(handler);
-        room = new Room(handler,"/worldLib/top.txt");
-        handler.setRoom(room);
+        room = new Room(handler,"res\\worldLib/top.txt");
+        //handler.setRoom(room);
         player = new Player(handler, 0, 0);
-        
     }
 
     @Override

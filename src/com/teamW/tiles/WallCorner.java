@@ -15,6 +15,7 @@ public class WallCorner extends Tile {
         super(id);
         this.wallCorners = Assets.getWallCornerArray();
         this.wallLength = wallCorners.length;
+        this.solid = true;
     }
 
     public void tick() {

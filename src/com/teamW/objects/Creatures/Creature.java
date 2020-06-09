@@ -18,7 +18,7 @@ public abstract class Creature extends GameObject {
         this.speed = Config.DEFAULT_SPEED;
     }
     public Creature(Handler handler, int x, int y, int width, int height) {
-        super(handler, x, y, width, height);
+        super();
         this.health = Config.DEFAULT_HEALTH;
         this.speed = Config.DEFAULT_SPEED;
     }
@@ -56,7 +56,15 @@ public abstract class Creature extends GameObject {
     }
 
     public void move() {
+        moveX();
+        moveY();
+    }
+
+    public void moveX() {
         x += xMove;
+    }
+
+    public void moveY() {
         y += yMove;
     }
 }

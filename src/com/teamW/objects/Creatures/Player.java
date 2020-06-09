@@ -3,9 +3,9 @@ package com.teamW.objects.Creatures;
 import java.awt.Graphics;
 
 import com.teamW.Config;
-import com.teamW.Game;
 import com.teamW.Handler;
 import com.teamW.graphics.Assets;
+import java.awt.Color;
 
 public class Player extends Creature {
     private Handler handler;
@@ -40,5 +40,11 @@ public class Player extends Creature {
 
     public void render(Graphics g) {
         g.drawImage(Assets.getPlayer(0), (int) x, (int) y, width, height, null);
+
+        g.setColor(Color.red);
+        g.fillRect((int) (x + bounds.getX()),
+                    (int) (y + bounds.getY()),
+                    (int) bounds.getWidth(),
+                    (int) bounds.getHeight());
     }
 }

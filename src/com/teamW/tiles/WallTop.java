@@ -15,6 +15,7 @@ public class WallTop extends Tile {
         super(id);
         this.wallTops = Assets.getWallTopArray();
         this.wallLength = wallTops.length;
+        this.solid = true;
     }
 
     public void tick() {
