@@ -6,25 +6,25 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import com.teamW.Config;
+import com.teamW.Handler;
 import com.teamW.tiles.TileHandler;
 
 public class Room {
-
     private int width, height;
     private int[][] tiles;
     private Scanner input;
     private File file;
-
-    public Room(String path) throws FileNotFoundException {
-
+    
+    public Room(Handler handler, String path) throws FileNotFoundException {
+        this.input = new Scanner(path);
         this.file = new File(path);
         this.input = new Scanner(file);
         this.tiles = new int[Config.ROOM_WIDTH][Config.ROOM_HEIGHT];
         this.width = Config.ROOM_WIDTH;
         this.height = Config.ROOM_HEIGHT;
         loadRoom(path);
+        
     }
-
     public void render(Graphics g) {
         for(int  y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {

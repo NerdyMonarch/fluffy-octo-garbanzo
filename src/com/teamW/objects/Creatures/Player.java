@@ -3,16 +3,16 @@ package com.teamW.objects.Creatures;
 import java.awt.Graphics;
 
 import com.teamW.Config;
-import com.teamW.Game;
+import com.teamW.Handler;
 import com.teamW.graphics.Assets;
 import java.awt.Color;
 
 public class Player extends Creature {
-    private Game game;
+    private Handler handler;
 
-    public Player(Game game, int x, int y) {
-        super(x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
-        this.game = game;
+    public Player(Handler handler, int x, int y) {
+        super(handler, x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
+        this.handler = handler;
     }
 
     public void tick() {
@@ -24,16 +24,16 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
 
-        if(game.getKeyInput().up) {
+        if(handler.getKeyInput().up) {
             yMove = -speed;
         }
-        if(game.getKeyInput().down) {
+        if(handler.getKeyInput().down) {
             yMove = speed;
         }
-        if(game.getKeyInput().left) {
+        if(handler.getKeyInput().left) {
             xMove = -speed;
         }
-        if(game.getKeyInput().right) {
+        if(handler.getKeyInput().right) {
             xMove = speed;
         }
     }

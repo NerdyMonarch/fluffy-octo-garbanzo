@@ -61,9 +61,9 @@ public class Game implements Runnable {
         frame.addKeyListener(keyInput);
 
         // Creates a Handler Object
-        this.handler = new Handler();
+        handler = new Handler(this);
 
-        gameState = new GameState(this);
+        gameState = new GameState(handler);
         State.setState(gameState);
     }
 

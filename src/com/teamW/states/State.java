@@ -2,15 +2,15 @@ package com.teamW.states;
 
 import java.awt.Graphics;
 
-import com.teamW.Game;
+import com.teamW.Handler;
 
 public abstract class State {
     
     private static State currentState = null;
-    protected Game game;
+    protected Handler handler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(Handler handler) {
+        this.handler = handler;
     }
     
     public static void setState(State state) {
