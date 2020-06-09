@@ -1,5 +1,8 @@
 package com.teamW.tiles;
 
+import com.teamW.Config;
+import com.teamW.worldGen.Room;
+
 public class TileHandler {
 
     // Tiles Called
@@ -24,10 +27,18 @@ public class TileHandler {
     public static Tile getTile(int num) {
         int i = num / 10;
         int j = num % 10;
+
         if(i < tiles.length - 1) { 
             tiles[i].setIndex(j);
             return tiles[i];
         }
         return defaultTile;
+    }
+
+    public static Tile getTile(Room r, int x, int y) {
+        if(x < 0 || y < 0 || x >= Config.ROOM_WIDTH || y >= Config.ROOM_HEIGHT) {
+            return defaultTile;
+        }
+        return getTile(r.getTileData(x, y));
     }
 }

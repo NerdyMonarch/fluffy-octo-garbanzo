@@ -2,6 +2,7 @@ package com.teamW.objects.Creatures;
 
 import com.teamW.Config;
 import com.teamW.objects.GameObject;
+import com.teamW.tiles.TileHandler;
 
 public abstract class Creature extends GameObject {
 
@@ -55,7 +56,15 @@ public abstract class Creature extends GameObject {
     }
 
     public void move() {
+        moveX();
+        moveY();
+    }
+
+    public void moveX() {
         x += xMove;
+    }
+
+    public void moveY() {
         y += yMove;
     }
 }

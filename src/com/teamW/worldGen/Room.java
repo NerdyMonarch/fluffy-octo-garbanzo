@@ -50,5 +50,9 @@ public class Room {
         }
     }
 
+    public int getTileData(int x, int y) {
+        return tiles[x][y];
+    }
+
 
 }
