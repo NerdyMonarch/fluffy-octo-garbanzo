@@ -1,6 +1,7 @@
 package com.teamW.objects.Creatures;
 
 import com.teamW.Config;
+import com.teamW.Handler;
 import com.teamW.objects.GameObject;
 
 public abstract class Creature extends GameObject {
@@ -16,8 +17,8 @@ public abstract class Creature extends GameObject {
         this.health = Config.DEFAULT_HEALTH;
         this.speed = Config.DEFAULT_SPEED;
     }
-    public Creature(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(Handler handler, int x, int y, int width, int height) {
+        super(handler, x, y, width, height);
         this.health = Config.DEFAULT_HEALTH;
         this.speed = Config.DEFAULT_SPEED;
     }
