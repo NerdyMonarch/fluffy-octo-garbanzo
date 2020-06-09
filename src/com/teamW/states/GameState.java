@@ -29,5 +29,9 @@ public class GameState extends State {
         room.render(g);
         player.render(g);
     }
+
+    public Room getRoom() {
+        return room;
+    }
     
 }
