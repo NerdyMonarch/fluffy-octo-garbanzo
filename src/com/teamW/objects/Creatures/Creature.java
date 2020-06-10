@@ -62,38 +62,58 @@ public abstract class Creature extends GameObject {
     }
 
     public void moveX() {
-        int tx = 0;
-
         // Gets Corner of Bound Box
         if(xMove > 0) {
-            tx = (int) (x + xMove + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
-        }
-        else if(xMove < 0) {
-            tx = (int) (x + xMove + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
-        }
+            int tx = (int) (x + xMove + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
 
-        // If Corners are Touching Bound Box, DO NOT MOVE
-        if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
+            // If Corners are Touching Bound Box, DO NOT MOVE
+            if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
                 !tileCollided(tx, (int) (y + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE))) {
                     x += xMove;
+            }
+            else {
+                x = tx * (Config.TILE_WIDTH * Config.TILE_SCALE) - bounds.getX() - bounds.getWidth() - 1;
+            }
+        }
+        else if(xMove < 0) {
+            int tx = (int) (x + xMove + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
+
+            // If Corners are Touching Bound Box, DO NOT MOVE
+            if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
+                !tileCollided(tx, (int) (y + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE))) {
+                    x += xMove;
+            }
+            else {
+                x = tx * (Config.TILE_WIDTH * Config.TILE_SCALE) + (Config.TILE_WIDTH * Config.TILE_SCALE) - bounds.getX();
+            }
         }
     }
 
     public void moveY() {
-        int ty = 0;
-
         // Gets Corner of Bound Box
         if(yMove < 0) {
-            ty = (int) (y + yMove + bounds.getY()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
-        }
-        else if(yMove > 0) {
-            ty = (int) (y + yMove + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
-        }
+            int ty = (int) (y + yMove + bounds.getY()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
 
-        // If Corners are Touching Bound Box, DO NOT MOVE
-        if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
+            // If Corners are Touching Bound Box, DO NOT MOVE
+            if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
                 !tileCollided((int) (x + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty)) {
                     y += yMove;
+            }
+            else {
+                y = ty * (Config.TILE_HEIGHT * Config.TILE_SCALE) + (Config.TILE_HEIGHT * Config.TILE_SCALE) - bounds.getY();
+            }
+        }
+        else if(yMove > 0) {
+            int ty = (int) (y + yMove + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
+
+            // If Corners are Touching Bound Box, DO NOT MOVE
+            if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
+                !tileCollided((int) (x + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty)) {
+                    y += yMove;
+            }
+            else {
+                y = ty * (Config.TILE_HEIGHT * Config.TILE_SCALE) - bounds.getY() - bounds.getHeight() - 1;
+            }
         }
     }
 

@@ -38,7 +38,18 @@ public class Assets {
     };
 
     private static BufferedImage[] players = {
-        ImageLoader.loadImage("/textures/creatures/player_1.png")
+        ImageLoader.loadImage("/textures/creatures/player0/player_0.png")
+    };
+
+    private static BufferedImage[][] playerAnimations = {
+        {
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_0.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_1.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_2.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_3.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_4.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/idle/idle_5.png"),
+        }
     };
 
     public static BufferedImage[] getFloorArray() {
@@ -87,5 +98,9 @@ public class Assets {
 
     public static BufferedImage getPlayer(int num) {
         return players[num];
+    }
+
+    public static BufferedImage[] getPlayerAnimation(int num) {
+        return playerAnimations[num];
     }
 }

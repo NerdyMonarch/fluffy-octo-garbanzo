@@ -1,19 +1,26 @@
 package com.teamW.objects.Creatures;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import com.teamW.Config;
 import com.teamW.Handler;
+import com.teamW.graphics.Animation;
 import com.teamW.graphics.Assets;
-import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
 
+    private Animation idleAnimation;
+    
     public Player(int x, int y) {
         super(x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
+        this.bounds = new Rectangle(0, 0, height * Config.TILE_SCALE, width * Config.TILE_SCALE);
+        idleAnimation = new Animation(250, Assets.getPlayerAnimation(0));
     }
 
     public void tick() {
+        animTick();
         getInput();
         move();
     }
@@ -36,13 +43,15 @@ public class Player extends Creature {
         }
     }
 
-    public void render(Graphics g) {
-        g.drawImage(Assets.getPlayer(0), (int) x, (int) y, width, height, null);
+    public BufferedImage getFrame() {
+        return idleAnimation.getCurrentFrame();
+    }
 
-        g.setColor(Color.red);
-        g.fillRect((int) (x + bounds.getX()),
-                    (int) (y + bounds.getY()),
-                    (int) bounds.getWidth(),
-                    (int) bounds.getHeight());
+    public void animTick() {
+        idleAnimation.tick();
+    }
+
+    public void render(Graphics g) {
+        g.drawImage(getFrame(), (int) x, (int) y, width * Config.TILE_SCALE, height * Config.TILE_SCALE, null);
     }
 }
