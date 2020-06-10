@@ -7,10 +7,10 @@ public class Handler {
     private static Game game;
     private static Room room;
 
-	public static KeyInput getKeyInput(){
+    public static KeyInput getKeyInput(){
         return game.getKeyInput();
     }
-    
+
     public static Game getGame(){
         return Handler.game;
     }
