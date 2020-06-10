@@ -3,6 +3,7 @@ package com.teamW.objects.Creatures;
 import com.teamW.Config;
 import com.teamW.Handler;
 import com.teamW.objects.GameObject;
+import com.teamW.tiles.TileHandler;
 
 public abstract class Creature extends GameObject {
 
@@ -17,8 +18,8 @@ public abstract class Creature extends GameObject {
         this.health = Config.DEFAULT_HEALTH;
         this.speed = Config.DEFAULT_SPEED;
     }
-    public Creature(Handler handler, int x, int y, int width, int height) {
-        super();
+    public Creature(int x, int y, int width, int height) {
+        super(x, y, width, height);
         this.health = Config.DEFAULT_HEALTH;
         this.speed = Config.DEFAULT_SPEED;
     }
@@ -61,10 +62,43 @@ public abstract class Creature extends GameObject {
     }
 
     public void moveX() {
-        x += xMove;
+        int tx = 0;
+
+        // Gets Corner of Bound Box
+        if(xMove > 0) {
+            tx = (int) (x + xMove + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
+        }
+        else if(xMove < 0) {
+            tx = (int) (x + xMove + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE);
+        }
+
+        // If Corners are Touching Bound Box, DO NOT MOVE
+        if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
+                !tileCollided(tx, (int) (y + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE))) {
+                    x += xMove;
+        }
     }
 
     public void moveY() {
-        y += yMove;
+        int ty = 0;
+
+        // Gets Corner of Bound Box
+        if(yMove < 0) {
+            ty = (int) (y + yMove + bounds.getY()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
+        }
+        else if(yMove > 0) {
+            ty = (int) (y + yMove + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE);
+        }
+
+        // If Corners are Touching Bound Box, DO NOT MOVE
+        if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
+                !tileCollided((int) (x + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty)) {
+                    y += yMove;
+        }
+    }
+
+    public boolean tileCollided(int x, int y) {
+        int tileData = Handler.getRoom().getTileData(x, y);
+        return TileHandler.getTile(tileData).isSolid();
     }
 }

@@ -8,11 +8,9 @@ import com.teamW.graphics.Assets;
 import java.awt.Color;
 
 public class Player extends Creature {
-    private Handler handler;
 
-    public Player(Handler handler, int x, int y) {
-        super(handler, x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
-        this.handler = handler;
+    public Player(int x, int y) {
+        super(x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
     }
 
     public void tick() {
@@ -24,16 +22,16 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
 
-        if(handler.getKeyInput().up) {
+        if(Handler.getKeyInput().up) {
             yMove = -speed;
         }
-        if(handler.getKeyInput().down) {
+        if(Handler.getKeyInput().down) {
             yMove = speed;
         }
-        if(handler.getKeyInput().left) {
+        if(Handler.getKeyInput().left) {
             xMove = -speed;
         }
-        if(handler.getKeyInput().right) {
+        if(Handler.getKeyInput().right) {
             xMove = speed;
         }
     }

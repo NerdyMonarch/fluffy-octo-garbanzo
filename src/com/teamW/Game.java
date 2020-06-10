@@ -34,9 +34,6 @@ public class Game implements Runnable {
     // Inputs KeyPresses
     private KeyInput keyInput;
 
-    // Handler for GameObjects
-    private Handler handler;
-
     // Holds JFrame
     private JFrame frame;
 
@@ -61,9 +58,9 @@ public class Game implements Runnable {
         frame.addKeyListener(keyInput);
 
         // Creates a Handler Object
-        handler = new Handler(this);
+        Handler.setGame(this);
 
-        gameState = new GameState(handler);
+        gameState = new GameState();
         State.setState(gameState);
     }
 
@@ -143,9 +140,6 @@ public class Game implements Runnable {
         if(State.getState() != null) {
             State.getState().tick();
         }
-
-        // Calls all Tick Methods using Handler
-        handler.tick();
     }
 
     // Handles Rendering Graphics

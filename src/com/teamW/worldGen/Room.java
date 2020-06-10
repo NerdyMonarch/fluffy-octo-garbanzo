@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import com.teamW.Config;
-import com.teamW.Handler;
 import com.teamW.tiles.TileHandler;
 
 public class Room {
@@ -15,7 +14,7 @@ public class Room {
     private Scanner input;
     private File file;
     
-    public Room(Handler handler, String path) throws FileNotFoundException {
+    public Room(String path) throws FileNotFoundException {
         this.input = new Scanner(path);
         this.file = new File(path);
         this.input = new Scanner(file);
@@ -51,7 +50,10 @@ public class Room {
     }
 
     public int getTileData(int x, int y) {
-        return tiles[x][y];
+        if(tiles.length > x && tiles[0].length > y) {
+            return tiles[x][y];
+        }
+        return 99;
     }
 
 

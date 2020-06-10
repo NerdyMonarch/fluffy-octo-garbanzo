@@ -12,11 +12,11 @@ public class GameState extends State {
     private Player player;
     private Room room;
     
-    public GameState(Handler handler) throws FileNotFoundException {
-        super(handler);
-        room = new Room(handler,"res\\worldLib/top.txt");
-        //handler.setRoom(room);
-        player = new Player(handler, 0, 0);
+    public GameState() throws FileNotFoundException {
+        super();
+        room = new Room("res/worldLib/top.txt");
+        Handler.setRoom(room);
+        player = new Player(360, 360);
     }
 
     @Override
@@ -29,10 +29,5 @@ public class GameState extends State {
     public void render(Graphics g) {
         room.render(g);
         player.render(g);
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-    
+    }  
 }
