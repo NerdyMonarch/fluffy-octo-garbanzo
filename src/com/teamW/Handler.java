@@ -1,6 +1,7 @@
 package com.teamW;
 
 import com.teamW.inputs.KeyInput;
+import com.teamW.inputs.MouseInput;
 import com.teamW.worldGen.Room;
 
 public class Handler {
@@ -9,6 +10,10 @@ public class Handler {
 
     public static KeyInput getKeyInput(){
         return game.getKeyInput();
+    }
+
+    public static MouseInput getMouseInput() {
+        return game.getMouseInput();
     }
 
     public static Game getGame(){

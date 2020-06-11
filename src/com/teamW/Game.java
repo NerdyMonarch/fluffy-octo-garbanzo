@@ -8,7 +8,9 @@ import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
+import com.teamW.inputs.MouseInput;
 import com.teamW.states.GameState;
+import com.teamW.states.MenuState;
 import com.teamW.states.State;
 import com.teamW.graphics.Window;
 
@@ -33,12 +35,14 @@ public class Game implements Runnable {
 
     // Inputs KeyPresses
     private KeyInput keyInput;
+    private MouseInput mouseInput;
 
     // Holds JFrame
     private JFrame frame;
 
     // States
     private State gameState;
+    private State menuState;
 
     public Game(String title) throws FileNotFoundException {
         // Stores Parameters as Fields
@@ -57,11 +61,18 @@ public class Game implements Runnable {
         this.keyInput = new KeyInput();
         frame.addKeyListener(keyInput);
 
+        this.mouseInput = new MouseInput();
+        frame.addMouseListener(mouseInput);
+        frame.addMouseMotionListener(mouseInput);
+        window.getCanvas().addMouseListener(mouseInput);
+        window.getCanvas().addMouseMotionListener(mouseInput);
+
         // Creates a Handler Object
         Handler.setGame(this);
 
         gameState = new GameState();
-        State.setState(gameState);
+        menuState = new MenuState();
+        State.setState(menuState);
     }
 
     // Starts Game
@@ -132,6 +143,17 @@ public class Game implements Runnable {
         return keyInput;
     }
 
+    public MouseInput getMouseInput() {
+        return mouseInput;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getMenuState() {
+        return menuState;
+    }
     
     private void tick() {
         keyInput.tick();

@@ -3,6 +3,11 @@ package com.teamW.graphics;
 import java.awt.image.BufferedImage;
 
 public class Assets {
+
+    private static BufferedImage[] menuAssets = {
+        ImageLoader.loadImage("/textures/menu/background.jpg")
+    };
+
     private static BufferedImage[] floors = {
         ImageLoader.loadImage("/textures/tiles/floors/floor_0.png"),
         ImageLoader.loadImage("/textures/tiles/floors/floor_1.png"),
@@ -63,6 +68,9 @@ public class Assets {
         }
     };
 
+    public static BufferedImage getMenuAsset(int num) {
+        return menuAssets[num];
+    }
     public static BufferedImage[] getFloorArray() {
         return floors;
     }
