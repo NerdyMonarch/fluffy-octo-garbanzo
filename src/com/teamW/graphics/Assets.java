@@ -49,6 +49,17 @@ public class Assets {
             ImageLoader.loadImage("/textures/creatures/player0/idle/idle_3.png"),
             ImageLoader.loadImage("/textures/creatures/player0/idle/idle_4.png"),
             ImageLoader.loadImage("/textures/creatures/player0/idle/idle_5.png"),
+        },
+        {
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_0.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_1.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_2.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_3.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_4.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_5.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_6.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_7.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/walk/walk_8.png")
         }
     };
 

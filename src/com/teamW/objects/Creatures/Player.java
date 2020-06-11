@@ -12,11 +12,13 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature {
 
     private Animation idleAnimation;
+    private Animation walkAnimation;
     
     public Player(int x, int y) {
         super(x, y, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
         this.bounds = new Rectangle(0, 0, height * Config.TILE_SCALE, width * Config.TILE_SCALE);
         idleAnimation = new Animation(250, Assets.getPlayerAnimation(0));
+        walkAnimation = new Animation(150, Assets.getPlayerAnimation(1));
     }
 
     public void tick() {
@@ -44,11 +46,15 @@ public class Player extends Creature {
     }
 
     public BufferedImage getFrame() {
+        if(Math.abs(xMove) > 0 || Math.abs(yMove) > 0) {
+            return walkAnimation.getCurrentFrame();
+        }
         return idleAnimation.getCurrentFrame();
     }
 
     public void animTick() {
         idleAnimation.tick();
+        walkAnimation.tick();
     }
 
     public void render(Graphics g) {
