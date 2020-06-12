@@ -27,4 +27,5 @@ public final class Config {
 
     // Background
     public static final Color background = new Color(37, 19, 26);
+	public static final int ATTACK_SIZE = 5;
 }

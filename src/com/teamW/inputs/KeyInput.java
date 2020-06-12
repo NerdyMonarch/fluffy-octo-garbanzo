@@ -3,10 +3,13 @@ package com.teamW.inputs;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import sun.awt.AWTAccessor.KeyEventAccessor;
+
 public class KeyInput extends KeyAdapter {
 
     private boolean[] keys;
     public boolean up, down, left, right;
+    public boolean attackUp, attackDown, attackLeft, attackRight;
     public KeyInput() {
         keys = new boolean[256];
     }
@@ -16,6 +19,10 @@ public class KeyInput extends KeyAdapter {
         down = keys[KeyEvent.VK_S];
         left = keys[KeyEvent.VK_A];
         right = keys[KeyEvent.VK_D];
+        attackUp = keys[KeyEvent.VK_I];
+        attackDown = keys[KeyEvent.VK_K];
+        attackLeft = keys[KeyEvent.VK_J];
+        attackRight = keys[KeyEvent.VK_L];
     }
     
     public void keyPressed(KeyEvent e) {

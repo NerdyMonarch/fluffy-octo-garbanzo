@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     private static BufferedImage[] menuAssets = {
-        ImageLoader.loadImage("/textures/menu/background.jpg")
+        ImageLoader.loadImage("/textures/menu/background.jpg"),
+        ImageLoader.loadImage("/textures/menu/title.png"),
+        ImageLoader.loadImage("/textures/menu/gameover.jpg")
     };
 
     private static BufferedImage[] floors = {
@@ -65,7 +67,40 @@ public class Assets {
             ImageLoader.loadImage("/textures/creatures/player0/walk/walk_6.png"),
             ImageLoader.loadImage("/textures/creatures/player0/walk/walk_7.png"),
             ImageLoader.loadImage("/textures/creatures/player0/walk/walk_8.png")
+        },
+        {
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_0.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_1.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_2.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_3.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_4.png"),
+            ImageLoader.loadImage("/textures/creatures/player0/sideattack/side_attack_5.png")
         }
+    };
+
+    private static BufferedImage[] batAnimation = {
+        ImageLoader.loadImage("/textures/creatures/bat/bat_0.png"),
+        ImageLoader.loadImage("/textures/creatures/bat/bat_1.png"),
+        ImageLoader.loadImage("/textures/creatures/bat/bat_2.png")
+    };
+
+    private static BufferedImage[] frogAnimation = {
+        ImageLoader.loadImage("/textures/creatures/frog/frog_0.png"),
+        ImageLoader.loadImage("/textures/creatures/frog/frog_1.png"),
+        ImageLoader.loadImage("/textures/creatures/frog/frog_2.png")
+    };
+
+    private static BufferedImage[] ghostAnimation = {
+        ImageLoader.loadImage("/textures/creatures/ghost/ghost_0.png"),
+        ImageLoader.loadImage("/textures/creatures/ghost/ghost_1.png"),
+        ImageLoader.loadImage("/textures/creatures/ghost/ghost_2.png")
+    };
+
+    private static BufferedImage[] skeletonAnimation = {
+        ImageLoader.loadImage("/textures/creatures/skeleton/skeleton_0.png"),
+        ImageLoader.loadImage("/textures/creatures/skeleton/skeleton_0.png"),
+        ImageLoader.loadImage("/textures/creatures/skeleton/skeleton_0.png"),
+        ImageLoader.loadImage("/textures/creatures/skeleton/skeleton_0.png"),
     };
 
     public static BufferedImage getMenuAsset(int num) {
@@ -121,5 +156,21 @@ public class Assets {
 
     public static BufferedImage[] getPlayerAnimation(int num) {
         return playerAnimations[num];
+    }
+
+    public static BufferedImage[] getBatAnimation() {
+        return batAnimation;
+    }
+
+    public static BufferedImage[] getFrogAnimation() {
+        return frogAnimation;
+    }
+
+    public static BufferedImage[] getGhostAnimation() {
+        return ghostAnimation;
+    }
+
+    public static BufferedImage[] getSkeletonAnimation() {
+        return skeletonAnimation;
     }
 }

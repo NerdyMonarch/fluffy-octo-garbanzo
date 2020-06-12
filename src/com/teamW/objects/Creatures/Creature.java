@@ -4,6 +4,7 @@ import com.teamW.Config;
 import com.teamW.Handler;
 import com.teamW.objects.GameObject;
 import com.teamW.tiles.TileHandler;
+import java.awt.Rectangle;
 
 public abstract class Creature extends GameObject {
 
@@ -12,6 +13,10 @@ public abstract class Creature extends GameObject {
 
     protected double xMove;
     protected double yMove;
+
+    protected boolean collided = false;
+
+    protected boolean alive = true;
 
     public Creature() {
         super(0, 0, Config.DEFAULT_OBJECT_WIDTH, Config.DEFAULT_OBJECT_HEIGHT);
@@ -31,6 +36,25 @@ public abstract class Creature extends GameObject {
     public void setHealth(int health) {
         this.health = health;
     }
+
+    public void hurt(int num) {
+        health -= num;
+        if(health <= 0) {
+            alive = false;
+            die();
+        }
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public Rectangle getCollisionBounds(float xOffset, float yOffset) {
+        Rectangle temp = new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width * Config.TILE_SCALE , bounds.height * Config.TILE_SCALE);
+        return temp;
+    }
+
+    public abstract void die();
 
     public double getSpeed() {
         return speed;
@@ -70,9 +94,11 @@ public abstract class Creature extends GameObject {
             if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
                 !tileCollided(tx, (int) (y + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE))) {
                     x += xMove;
+                    collided = false;
             }
             else {
                 x = tx * (Config.TILE_WIDTH * Config.TILE_SCALE) - bounds.getX() - bounds.getWidth() - 1;
+                collided = true;
             }
         }
         else if(xMove < 0) {
@@ -82,9 +108,11 @@ public abstract class Creature extends GameObject {
             if(!tileCollided(tx, (int) (y + bounds.getY()) / (Config.TILE_WIDTH * Config.TILE_SCALE)) &&
                 !tileCollided(tx, (int) (y + bounds.getY() + bounds.getHeight()) / (Config.TILE_HEIGHT * Config.TILE_SCALE))) {
                     x += xMove;
+                    collided = false;
             }
             else {
                 x = tx * (Config.TILE_WIDTH * Config.TILE_SCALE) + (Config.TILE_WIDTH * Config.TILE_SCALE) - bounds.getX();
+                collided = true;
             }
         }
     }
@@ -98,9 +126,11 @@ public abstract class Creature extends GameObject {
             if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
                 !tileCollided((int) (x + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty)) {
                     y += yMove;
+                    collided = false;
             }
             else {
                 y = ty * (Config.TILE_HEIGHT * Config.TILE_SCALE) + (Config.TILE_HEIGHT * Config.TILE_SCALE) - bounds.getY();
+                collided = true;
             }
         }
         else if(yMove > 0) {
@@ -110,9 +140,11 @@ public abstract class Creature extends GameObject {
             if(!tileCollided((int) (x + bounds.getX()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty) &&
                 !tileCollided((int) (x + bounds.getX() + bounds.getWidth()) / (Config.TILE_WIDTH * Config.TILE_SCALE), ty)) {
                     y += yMove;
+                    collided = false;
             }
             else {
                 y = ty * (Config.TILE_HEIGHT * Config.TILE_SCALE) - bounds.getY() - bounds.getHeight() - 1;
+                collided = true;
             }
         }
     }
@@ -120,5 +152,9 @@ public abstract class Creature extends GameObject {
     public boolean tileCollided(int x, int y) {
         int tileData = Handler.getRoom().getTileData(x, y);
         return TileHandler.getTile(tileData).isSolid();
+    }
+
+    public boolean isCollided() {
+        return collided;
     }
 }

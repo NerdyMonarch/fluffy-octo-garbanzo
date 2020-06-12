@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 
 import com.teamW.inputs.KeyInput;
 import com.teamW.inputs.MouseInput;
+import com.teamW.sounds.Sound;
+import com.teamW.states.GameOver;
 import com.teamW.states.GameState;
 import com.teamW.states.MenuState;
 import com.teamW.states.State;
@@ -41,8 +43,11 @@ public class Game implements Runnable {
     private JFrame frame;
 
     // States
-    private State gameState;
-    private State menuState;
+    private GameState gameState;
+    private MenuState menuState;
+    private GameOver gameOver;
+
+    private Sound song;
 
     public Game(String title) throws FileNotFoundException {
         // Stores Parameters as Fields
@@ -72,7 +77,12 @@ public class Game implements Runnable {
 
         gameState = new GameState();
         menuState = new MenuState();
+        gameOver = new GameOver();
         State.setState(menuState);
+
+        song = new Sound("res\\data\\song0.wav");
+        song.loop();
+        song.play();
     }
 
     // Starts Game
@@ -147,12 +157,20 @@ public class Game implements Runnable {
         return mouseInput;
     }
 
-    public State getGameState() {
+    public GameState getGameState() {
         return gameState;
     }
 
-    public State getMenuState() {
+    public MenuState getMenuState() {
         return menuState;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
+    public void resetGame() throws FileNotFoundException {
+        gameState = new GameState();
     }
     
     private void tick() {
