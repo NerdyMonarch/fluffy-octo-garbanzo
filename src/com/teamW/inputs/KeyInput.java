@@ -3,7 +3,7 @@ package com.teamW.inputs;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import sun.awt.AWTAccessor.KeyEventAccessor;
+//import sun.awt.AWTAccessor.KeyEventAccessor; //class in openJDK
 
 public class KeyInput extends KeyAdapter {
 
