@@ -3,8 +3,6 @@ package com.teamW.inputs;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import sun.awt.AWTAccessor.KeyEventAccessor;
-
 public class KeyInput extends KeyAdapter {
 
     private boolean[] keys;
